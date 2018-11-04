@@ -1,4 +1,4 @@
-# Movie Quote Gif Generator
+# Movie Quote GIF Generator
 This is a custom GIF generator that helps users find GIF's of specific quotes or moments from movies.
 
 # Why

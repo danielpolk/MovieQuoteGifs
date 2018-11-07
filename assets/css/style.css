@@ -1,0 +1,50 @@
+body {
+    background-color: #181819;
+}
+
+.jumbotron {
+height: 100px;
+background-color:#F8F9FA;
+background-image: url('../images/JumboBackground.png');
+}
+
+.fa-film {
+    font-size: 32px;
+}
+
+.fa-magic {
+    font-size: 28px;
+}
+
+#navbarDropdown {
+    color: black;
+}
+
+.navbar {
+  top: -45px !important;
+  border-radius: 10px;
+  background-color: #181819 !important;
+}
+
+.navbar-brand, .nav-link {
+    font-family: 'Arvo', serif !important;
+    color: #F8F9FA !important;
+}
+
+.form-inline {
+    padding: 2px;
+    margin: 5px;
+}
+
+.navbar-brand {
+    font-size: 30px;
+}
+
+
+.nav-link {
+    margin-left: -12px !important;
+}
+
+.dropdown-menu, .form-control {
+    width: 100% !important;
+}

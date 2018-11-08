@@ -1,12 +1,15 @@
 body {
-    background-color: #181819;
+    background-image: url('../images/lloyd-dirks-74271-unsplash.jpg');
+    background-size: 100% auto;
 }
 
 .jumbotron {
 height: 100px;
-background-color:rgb(248, 249, 250);
-background-image: url('../images/background3.png');
+background-color: #060D1D;
+border-radius: 10px;
 }
+
+
 
 .fa-film {
     font-size: 32px;
@@ -52,10 +55,11 @@ background-image: url('../images/background3.png');
 footer {
     position: fixed;
     bottom: 0;
-    background: gray;
+    height: 100px !important;
+    background-color: #181819 !important;
     width: 100%;
-    color: white;
-    font-family: 'Roboto Slab', serif;
+    font-family: 'Anton', sans-serif !important;
+    color: #F8F9FA !important;
     margin-top: 500px;
 }
 

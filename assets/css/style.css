@@ -48,3 +48,38 @@ background-image: url('../images/JumboBackground.png');
 .dropdown-menu, .form-control {
     width: 100% !important;
 }
+
+footer {
+    position: fixed;
+    bottom: 0;
+    background: gray;
+    width: 100%;
+    color: white;
+    font-family: 'Roboto Slab', serif;
+    margin-top: 500px;
+}
+
+.historyButton {
+    margin-right: 5px;
+}
+
+#gifs-appear-here {
+    text-align: center;
+}
+
+#gifs-appear-here > img {
+    margin: 5px;
+    border: white 1px solid;
+}
+
+#history-appear-here {
+    text-align: center
+}
+
+#history-appear-here > img {
+    margin: 5px;
+}
+
+#gif-container {
+    margin-bottom: 200px;
+}

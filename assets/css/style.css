@@ -74,6 +74,7 @@ footer {
 #gifs-appear-here > img {
     margin: 5px;
     border: white 1px solid;
+    border-radius: 10px;
 }
 
 #history-appear-here {

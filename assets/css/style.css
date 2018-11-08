@@ -4,8 +4,8 @@ body {
 
 .jumbotron {
 height: 100px;
-background-color:#F8F9FA;
-background-image: url('../images/JumboBackground.png');
+background-color:rgb(248, 249, 250);
+background-image: url('../images/background3.png');
 }
 
 .fa-film {
@@ -27,7 +27,7 @@ background-image: url('../images/JumboBackground.png');
 }
 
 .navbar-brand, .nav-link {
-    font-family: 'Arvo', serif !important;
+    font-family: 'Anton', sans-serif !important;
     color: #F8F9FA !important;
 }
 

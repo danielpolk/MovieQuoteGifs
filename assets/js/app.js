@@ -6,10 +6,13 @@ $("#gifSearchBtn").on("click", function (event) {
 
 
     // storing search value in variale
-    var movieSearch = $('.form-control').val();
+    var movie = $('#movie').val();
+    var quote = $('#quote').val();
+    var movieSearch = movie + ' ' + quote;
+    console.log(movieSearch);
     // adding the searched term into the API URL
     var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
-        movieSearch + "&api_key=dc6zaTOxFJmzC&limit=10";
+        movieSearch + "&api_key=dc6zaTOxFJmzC&limit=1";
     //if search is empty and submitted it will not add a button to the search history footer
     if (movieSearch == "") {
         return false;
@@ -24,7 +27,7 @@ $("#gifSearchBtn").on("click", function (event) {
             var historyButton = $('<button>');
             historyButton.addClass('historyButton');
             // prepend the movie searched into the button
-            historyButton.prepend(movieSearch);
+            historyButton.prepend(movie);
             // prepend the button with the link of the searched movie into the footer
             $('#searchHistory').prepend(historyButton)
             // resets the value of the form
@@ -57,7 +60,7 @@ $(document.body).on("click", ".historyButton", function () {
     console.log(movieHistory);
     // adding the searched term into the API URL
     var qURL = "https://api.giphy.com/v1/gifs/search?q=" +
-        movieHistory + "&api_key=dc6zaTOxFJmzC&limit=10";
+        movieHistory + "&api_key=dc6zaTOxFJmzC&limit=1";
 
     $.ajax({
             url: qURL,

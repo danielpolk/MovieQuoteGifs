@@ -5,6 +5,7 @@ var movie = $('#movie').val();
 
 $("#gifSearchBtn").on("click", function (event) {
     event.preventDefault();
+    
     // hide previous gifs that were searched
     $("#gifs-appear-here").empty();
     $("#history-appear-here").empty();
@@ -64,10 +65,17 @@ $("#gifSearchBtn").on("click", function (event) {
                 imgURL = results[i].images.fixed_height.url;
                 console.log(imgURL);
                 var downloadBTN = $("<a>");
-                downloadBTN.addClass("downloadBtn fas fa-film");
+                downloadBTN.addClass("downloadBtn far fa-arrow-alt-circle-down");
                 downloadBTN.attr("data-href", results[i].images.fixed_height.url);
                 downloadBTN.attr("onclick", "forceDownload(this)");
                 downloadBTN.attr("download", ("image" + i));
+
+                //pause button
+                // downloadBTN.addClass("downloadBtn far fa-pause-circle"); 
+
+
+                //favorite button
+                // downloadBTN.addClass("downloadBtn far fa-star");
 
                 // personImage.append(downloadBTN);
                 var imgDiv = $("<div>");
@@ -79,6 +87,22 @@ $("#gifSearchBtn").on("click", function (event) {
         });
 
 })
+
+//Made "enter" keystroke === to search button click.
+$("#movie").on("keydown", function(event) {
+    if(event.keyCode === 13) {
+        event.preventDefault();
+        $("#gifSearchBtn").click();
+    }
+});
+
+$("#quote").on("keydown", function(event) {
+    if(event.keyCode === 13) {
+        event.preventDefault();
+        $("#gifSearchBtn").click();
+    }
+});
+
 
 $(document.body).on("click", ".historyButton", function () {
     $('.moreGifs').empty();
@@ -140,6 +164,7 @@ $(document.body).on("click", ".historyButton", function () {
 $(document.body).on("click", ".moreBtn", function(){
     $('.moreGifs').empty();
     var movieSearch = $('.historyButton:first-child').text()
+    
 
     var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
     movieSearch + "&api_key=dc6zaTOxFJmzC&limit=10";

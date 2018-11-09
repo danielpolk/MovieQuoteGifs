@@ -264,3 +264,23 @@ footer {
                  0 0 2px #000,                
                  0 0 2px #000;
 }
+
+.favDiv{
+    width: 78%;
+    border: 1px solid white;
+    /* position: absolute; */
+    margin: 20px auto;
+}
+
+.favImage{
+    width: 78%;
+}
+
+.favBtn{
+    position: absolute;
+}
+
+.favDiv i{
+    color: red !important;
+    margin: 8px;
+}

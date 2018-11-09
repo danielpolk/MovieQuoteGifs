@@ -253,6 +253,8 @@ footer {
 
 .favBtn{
     position: absolute;
+    margin: 7px 39px;
+    color: white !important;
 }
 
 .favDiv i{

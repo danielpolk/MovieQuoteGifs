@@ -72,19 +72,44 @@ footer {
     text-align: center;
 }
 
-#gifs-appear-here > img {
+#gifs-appear-here > div {
+    display: inline-block;
     margin: 5px;
-    border: white 1px solid;
+
+}
+
+#gifs-appear-here > div > img {
+    margin: 5px;
+    border: white 2px solid;
     border-radius: 10px;
 }
 
 #history-appear-here {
-    text-align: center
+    text-align: center;
 }
 
-#history-appear-here > img {
+.moreGifs {
+    text-align: center;
+}
+
+.moreGifs > button {
+    border-radius: 1px;
+    text-align: center;
+    background: rgb(255, 255, 255);
+}
+
+#history-appear-here > div {
+    display: inline-block;
     margin: 5px;
 }
+
+#history-appear-here > div > img {
+    margin: 5px;
+    border: white 2px solid;
+    border-radius: 10px;
+}
+
+
 
 #gif-container {
     margin-bottom: 200px;

@@ -75,6 +75,22 @@ $("#gifSearchBtn").on("click", function (event) {
 
 })
 
+//Made "enter" keystroke === to search button click.
+$("#movie").on("keydown", function(event) {
+    if(event.keyCode === 13) {
+        event.preventDefault();
+        $("#gifSearchBtn").click();
+    }
+});
+
+$("#quote").on("keydown", function(event) {
+    if(event.keyCode === 13) {
+        event.preventDefault();
+        $("#gifSearchBtn").click();
+    }
+});
+
+
 $(document.body).on("click", ".historyButton", function () {
     event.preventDefault();
     // empty out the gifs on the page

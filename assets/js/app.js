@@ -95,8 +95,20 @@ $(document.body).on("click", ".historyButton", function () {
                 var personHistoryImage = $("<img>");
                 personHistoryImage.addClass("historyImage")
                 personHistoryImage.attr("src", results1[j].images.fixed_height.url);
-                
-                $("#history-appear-here").prepend(personHistoryImage);
+                 // personImage.attr("onclick", "forceDownload(this)");
+                // personImage.attr("download", ("image"+i));
+                imgURL = results1[j].images.fixed_height.url;
+                console.log(imgURL);
+                var downloadBtnH = $("<a>");
+                downloadBtnH.addClass("downloadBtn fas fa-film");
+                downloadBtnH.attr("data-href", results1[j].images.fixed_height.url);
+                downloadBtnH.attr("onclick", "forceDownload(this)");
+                downloadBtnH.attr("download", ("image"+j));
+
+                // personImage.append(downloadBTN);
+                var imgDivH = $("<div>");
+                imgDivH.append(downloadBtnH).append(personHistoryImage);
+                $("#history-appear-here").prepend(imgDivH);
             }
         })
 });

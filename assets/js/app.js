@@ -11,10 +11,15 @@ $("#gifSearchBtn").on("click", function (event) {
     var movie = $('#movie').val();
     var quote = $('#quote').val();
     var movieSearch = movie + ' ' + quote;
-    console.log(movieSearch);
+    var limit = 0;
+    if($('#quote').val().length==0){
+        limit = 10;
+    } else {
+        limit = 1;
+    }
     // adding the searched term into the API URL
     var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
-        movieSearch + "&api_key=dc6zaTOxFJmzC&limit=1";
+        movieSearch + "&api_key=dc6zaTOxFJmzC&limit=" + limit ;
     //if search is empty and submitted it will not add a button to the search history footer
     if (movieSearch == "") {
         return false;
@@ -47,10 +52,17 @@ $("#gifSearchBtn").on("click", function (event) {
                 imgURL = results[i].images.fixed_height.url;
                 console.log(imgURL);
                 var downloadBTN = $("<a>");
-                downloadBTN.addClass("downloadBtn fas fa-film");
+                downloadBTN.addClass("downloadBtn far fa-arrow-alt-circle-down");
                 downloadBTN.attr("data-href", results[i].images.fixed_height.url);
                 downloadBTN.attr("onclick", "forceDownload(this)");
                 downloadBTN.attr("download", ("image"+i));
+
+                //pause button
+                // downloadBTN.addClass("downloadBtn far fa-pause-circle"); 
+
+
+                //favorite button
+                // downloadBTN.addClass("downloadBtn far fa-star");
 
                 // personImage.append(downloadBTN);
                 var imgDiv = $("<div>");
@@ -75,7 +87,7 @@ $(document.body).on("click", ".historyButton", function () {
     console.log(movieHistory);
     // adding the searched term into the API URL
     var qURL = "https://api.giphy.com/v1/gifs/search?q=" +
-        movieHistory + "&api_key=dc6zaTOxFJmzC&limit=1";
+        movieHistory + "&api_key=dc6zaTOxFJmzC&limit=10";
 
     $.ajax({
             url: qURL,

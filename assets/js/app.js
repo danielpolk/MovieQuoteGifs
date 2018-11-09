@@ -58,17 +58,31 @@ $("#gifSearchBtn").on("click", function (event) {
 
             for (var i = 0; i < results.length; i++) {
                 var personImage = $("<img>");
+                var resultElem = results[i];
                 personImage.addClass("gifImage")
                 personImage.attr("src", results[i].images.fixed_height.url);
                 // personImage.attr("onclick", "forceDownload(this)");
                 // personImage.attr("download", ("image"+i));
-                imgURL = results[i].images.fixed_height.url;
-                console.log(imgURL);
                 var downloadBTN = $("<a>");
                 downloadBTN.addClass("downloadBtn far fa-arrow-alt-circle-down");
                 downloadBTN.attr("data-href", results[i].images.fixed_height.url);
                 downloadBTN.attr("onclick", "forceDownload(this)");
-                downloadBTN.attr("download", ("image" + i));
+                downloadBTN.attr("download", (results[i].title + "" + i));
+
+                // Pausing and playing the gifs ----------------------- //
+
+                $(document.body).on("click", ".gifImage", function(){
+                    
+                    if($(this).attr('src')== resultElem.images.fixed_height.url){
+                        console.log("clicked");
+                        $(this).attr('src', resultElem.images.fixed_height_still.url);
+                    } else {
+                        $(this).attr('src', resultElem.images.fixed_height.url);
+                    }
+                
+                }); // end of click handler
+
+                
 
                 //pause button
                 // downloadBTN.addClass("downloadBtn far fa-pause-circle"); 
@@ -79,9 +93,12 @@ $("#gifSearchBtn").on("click", function (event) {
 
                 // personImage.append(downloadBTN);
                 var imgDiv = $("<div>");
+                imgDiv.addClass('imgDiv');
                 imgDiv.append(downloadBTN).append(personImage);
                 $("#gifs-appear-here").prepend(imgDiv);
             }
+
+            
 
 
         });
@@ -204,6 +221,36 @@ $.ajax({
     });
 
 })
+
+// Pausing Gifs ---------------------------------------------
+// $(document.body).on("click", ".gifImage", function(){
+
+//     personImage.attr({
+//         "src": results.images.original_still.url,
+//         "data-still": results.images.original_still.url,
+//         "data-animate": results.images.original.url,
+//         "data-state": "still",
+//         "class": "gif"
+//     });
+			
+//     // $(this) just means "the element with class 'gif' that was clicked"
+//    var state = $(this).attr("data-state");
+   
+//    // $(this).attr("data-state") will either be "still" or "animate"
+//    // IF it's still: we change it to animate
+//    if (state === "still") {
+       
+//        var newSrc = $(this).attr("data-animate");
+//        $(this).attr("src", newSrc);
+//        $(this).attr("data-state", "animate");
+       
+//     // OTHERWISE it's animate already, so we change it to still
+//    } else {
+//        var newSrc = $(this).attr("data-still");
+//        $(this).attr("src", newSrc);
+//        $(this).attr("data-state", "still");
+//    }
+// }); // end of click handler
 
 
 // Side menu script starts=============\\

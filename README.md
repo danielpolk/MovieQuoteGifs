@@ -6,5 +6,15 @@ Imagine getting a text from a friend and you think of the perfect TV or movie qu
 
 # How
 
+# App Guide lines
+  * Create multiple API's
+    * OMDB
+    * Giphy
+  * Add Download and Fav button to each gif in the main display
+  * Add Fav side bar to add append the fav images to that side
+  * Footer will have history for previous searches
+  * Try to make the fav and history sections persist even when the page is reloaded(via localStorage or cookies).
+  * Add a quote section to pull more specific images
+
 
 # Feedback Welcome!

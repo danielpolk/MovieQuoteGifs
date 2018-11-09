@@ -1,5 +1,3 @@
-var imgURL = "";
-
 $("#gifSearchBtn").on("click", function (event) {
     event.preventDefault();
     // hide previous gifs that were searched
@@ -39,20 +37,7 @@ $("#gifSearchBtn").on("click", function (event) {
                 var personImage = $("<img>");
                 personImage.addClass("gifImage")
                 personImage.attr("src", results[i].images.fixed_height.url);
-                // personImage.attr("onclick", "forceDownload(this)");
-                // personImage.attr("download", ("image"+i));
-                imgURL = results[i].images.fixed_height.url;
-                console.log(imgURL);
-                var downloadBTN = $("<a>");
-                downloadBTN.addClass("downloadBtn fas fa-film");
-                downloadBTN.attr("data-href", results[i].images.fixed_height.url);
-                downloadBTN.attr("onclick", "forceDownload(this)");
-                downloadBTN.attr("download", ("image"+i));
-
-                // personImage.append(downloadBTN);
-                var imgDiv = $("<div>");
-                imgDiv.append(downloadBTN).append(personImage);
-                $("#gifs-appear-here").prepend(imgDiv);
+                $("#gifs-appear-here").prepend(personImage);
             }
 
 
@@ -87,62 +72,7 @@ $(document.body).on("click", ".historyButton", function () {
                 var personHistoryImage = $("<img>");
                 personHistoryImage.addClass("historyImage")
                 personHistoryImage.attr("src", results1[j].images.fixed_height.url);
-                
                 $("#history-appear-here").prepend(personHistoryImage);
             }
         })
 });
-
-
-// Side menu script starts=============\\
-
-var sideMenu;
- $("#menu-close").click(function(e) {
-    e.preventDefault();
-    sideMenu = false;
-    $("#sidebar-wrapper").toggleClass("active");
-    changeBodyMargin();
-  });
-  $("#menu-toggle").click(function(e) {
-    e.preventDefault();
-    sideMenu = true;
-    $("#sidebar-wrapper").toggleClass("active");
-    changeBodyMargin();
-  });
-
-  function changeBodyMargin(){
-    if (sideMenu  == true){
-        $("#gif-container").addClass("shiftContentIn");
-        $("#gif-container").removeClass("shiftContentOut");
-        console.log("class added");
-    } else{
-        $("#gif-container").addClass("shiftContentOut");
-        $("#gif-container").removeClass("shiftContentIn");
-        console.log("class removed;")
-    }
-
-  }
-  changeBodyMargin();
-// Side menu script ends=============\\
-// Download function script starts=============\\
-function forceDownload(link){
-    var url = link.getAttribute("data-href");
-    var fileName = link.getAttribute("download");
-    // link.innerText = "Working...";
-    var xhr = new XMLHttpRequest();
-    xhr.open("GET", url, true);
-    xhr.responseType = "blob";
-    xhr.onload = function(){
-        var urlCreator = window.URL || window.webkitURL;
-        var imageUrl = urlCreator.createObjectURL(this.response);
-        var tag = document.createElement('a');
-        tag.href = imageUrl;
-        tag.download = fileName;
-        document.body.appendChild(tag);
-        tag.click();
-        document.body.removeChild(tag);
-        // link.innerText="Download Image";
-    }
-    xhr.send();
-}
-// Download function script ends=============\\

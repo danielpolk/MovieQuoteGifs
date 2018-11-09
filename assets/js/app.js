@@ -92,18 +92,18 @@ $(document.body).on("click", ".historyButton", function () {
                 personHistoryImage.attr("src", results1[j].images.fixed_height.url);
                  // personImage.attr("onclick", "forceDownload(this)");
                 // personImage.attr("download", ("image"+i));
-                imgURL = results[i].images.fixed_height.url;
+                imgURL = results1[j].images.fixed_height.url;
                 console.log(imgURL);
-                var downloadBTN = $("<a>");
-                downloadBTN.addClass("downloadBtn fas fa-film");
-                downloadBTN.attr("data-href", results[i].images.fixed_height.url);
-                downloadBTN.attr("onclick", "forceDownload(this)");
-                downloadBTN.attr("download", ("image"+i));
+                var downloadBtnH = $("<a>");
+                downloadBtnH.addClass("downloadBtn fas fa-film");
+                downloadBtnH.attr("data-href", results1[j].images.fixed_height.url);
+                downloadBtnH.attr("onclick", "forceDownload(this)");
+                downloadBtnH.attr("download", ("image"+j));
 
                 // personImage.append(downloadBTN);
-                var imgDiv = $("<div>");
-                imgDiv.append(downloadBTN).append(personImage);
-                $("#history-appear-here").prepend(personHistoryImage);
+                var imgDivH = $("<div>");
+                imgDivH.append(downloadBtnH).append(personHistoryImage);
+                $("#history-appear-here").prepend(imgDivH);
             }
         })
 });

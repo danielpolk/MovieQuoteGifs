@@ -1,4 +1,7 @@
 var imgURL = "";
+var movie = $('#movie').val();
+    var quote = $('#quote').val();
+    var movieSearch = movie + ' ' + quote;
 
 $("#gifSearchBtn").on("click", function (event) {
     event.preventDefault();
@@ -12,14 +15,14 @@ $("#gifSearchBtn").on("click", function (event) {
     var quote = $('#quote').val();
     var movieSearch = movie + ' ' + quote;
     var limit = 0;
-    if($('#quote').val().length==0){
+    if ($('#quote').val().length == 0) {
         limit = 10;
     } else {
         limit = 1;
     }
     // adding the searched term into the API URL
     var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
-        movieSearch + "&api_key=dc6zaTOxFJmzC&limit=" + limit ;
+        movieSearch + "&api_key=dc6zaTOxFJmzC&limit=" + limit;
     //if search is empty and submitted it will not add a button to the search history footer
     if (movieSearch == "") {
         return false;
@@ -40,6 +43,15 @@ $("#gifSearchBtn").on("click", function (event) {
             // resets the value of the form
             $('.form-control').val("");
 
+            var moreGifDiv = $('<div>');
+            moreGifDiv.addClass('moreGifs')
+            var moreGifs = $('<button>');
+            moreGifs.addClass('moreBtn');
+            moreGifs.text("See More");
+            moreGifDiv.append(moreGifs);
+
+            $("#gifs-appear-here").after(moreGifDiv);
+
             var results = response.data;
             console.log(results);
 
@@ -55,7 +67,7 @@ $("#gifSearchBtn").on("click", function (event) {
                 downloadBTN.addClass("downloadBtn fas fa-film");
                 downloadBTN.attr("data-href", results[i].images.fixed_height.url);
                 downloadBTN.attr("onclick", "forceDownload(this)");
-                downloadBTN.attr("download", ("image"+i));
+                downloadBTN.attr("download", ("image" + i));
 
                 // personImage.append(downloadBTN);
                 var imgDiv = $("<div>");
@@ -69,6 +81,7 @@ $("#gifSearchBtn").on("click", function (event) {
 })
 
 $(document.body).on("click", ".historyButton", function () {
+    $('.moreGifs').empty();
     event.preventDefault();
     // empty out the gifs on the page
     $("#gifs-appear-here").empty();
@@ -95,7 +108,7 @@ $(document.body).on("click", ".historyButton", function () {
                 var personHistoryImage = $("<img>");
                 personHistoryImage.addClass("historyImage")
                 personHistoryImage.attr("src", results1[j].images.fixed_height.url);
-                 // personImage.attr("onclick", "forceDownload(this)");
+                // personImage.attr("onclick", "forceDownload(this)");
                 // personImage.attr("download", ("image"+i));
                 imgURL = results1[j].images.fixed_height.url;
                 console.log(imgURL);
@@ -103,56 +116,110 @@ $(document.body).on("click", ".historyButton", function () {
                 downloadBtnH.addClass("downloadBtn fas fa-film");
                 downloadBtnH.attr("data-href", results1[j].images.fixed_height.url);
                 downloadBtnH.attr("onclick", "forceDownload(this)");
-                downloadBtnH.attr("download", ("image"+j));
+                downloadBtnH.attr("download", ("image" + j));
 
                 // personImage.append(downloadBTN);
                 var imgDivH = $("<div>");
                 imgDivH.append(downloadBtnH).append(personHistoryImage);
                 $("#history-appear-here").prepend(imgDivH);
+
             }
+
+            // var moreGifDiv = $('<div>');
+            // moreGifDiv.addClass('moreGifs')
+            // var moreGifs = $('<button>')
+            // moreGifs.addClass('moreBtn');
+            // moreGifs.text("See More");
+            // moreGifDiv.append(moreGifs);
+
+            $("#history-appear-here").after(moreGifDiv);
         })
 });
+
+
+$(document.body).on("click", ".moreBtn", function(){
+    $('.moreGifs').empty();
+    var movieSearch = $('.historyButton:first-child').text()
+
+    var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
+    movieSearch + "&api_key=dc6zaTOxFJmzC&limit=10";
+//if search is empty and submitted it will not add a button to the search history footer
+if (movieSearch == "") {
+    return false;
+}
+$.ajax({
+        url: queryURL,
+        method: "GET"
+    })
+    .then(function (response) {
+        var results = response.data;
+        console.log(results);
+
+        for (var i = 0; i < results.length; i++) {
+            var personImage = $("<img>");
+            personImage.addClass("gifImage")
+            personImage.attr("src", results[i].images.fixed_height.url);
+            // personImage.attr("onclick", "forceDownload(this)");
+            // personImage.attr("download", ("image"+i));
+            imgURL = results[i].images.fixed_height.url;
+            console.log(imgURL);
+            var downloadBTN = $("<a>");
+            downloadBTN.addClass("downloadBtn fas fa-film");
+            downloadBTN.attr("data-href", results[i].images.fixed_height.url);
+            downloadBTN.attr("onclick", "forceDownload(this)");
+            downloadBTN.attr("download", ("image" + i));
+
+            // personImage.append(downloadBTN);
+            var imgDiv = $("<div>");
+            imgDiv.append(downloadBTN).append(personImage);
+            $("#gifs-appear-here").prepend(imgDiv);
+        }
+
+
+    });
+
+})
 
 
 // Side menu script starts=============\\
 
 var sideMenu;
- $("#menu-close").click(function(e) {
+$("#menu-close").click(function (e) {
     e.preventDefault();
     sideMenu = false;
     $("#sidebar-wrapper").toggleClass("active");
     changeBodyMargin();
-  });
-  $("#menu-toggle").click(function(e) {
+});
+$("#menu-toggle").click(function (e) {
     e.preventDefault();
     sideMenu = true;
     $("#sidebar-wrapper").toggleClass("active");
     changeBodyMargin();
-  });
+});
 
-  function changeBodyMargin(){
-    if (sideMenu  == true){
+function changeBodyMargin() {
+    if (sideMenu == true) {
         $("#gif-container").addClass("shiftContentIn");
         $("#gif-container").removeClass("shiftContentOut");
         console.log("class added");
-    } else{
+    } else {
         $("#gif-container").addClass("shiftContentOut");
         $("#gif-container").removeClass("shiftContentIn");
         console.log("class removed;")
     }
 
-  }
-  changeBodyMargin();
+}
+changeBodyMargin();
 // Side menu script ends=============\\
 // Download function script starts=============\\
-function forceDownload(link){
+function forceDownload(link) {
     var url = link.getAttribute("data-href");
     var fileName = link.getAttribute("download");
     // link.innerText = "Working...";
     var xhr = new XMLHttpRequest();
     xhr.open("GET", url, true);
     xhr.responseType = "blob";
-    xhr.onload = function(){
+    xhr.onload = function () {
         var urlCreator = window.URL || window.webkitURL;
         var imageUrl = urlCreator.createObjectURL(this.response);
         var tag = document.createElement('a');

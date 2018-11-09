@@ -52,10 +52,17 @@ $("#gifSearchBtn").on("click", function (event) {
                 imgURL = results[i].images.fixed_height.url;
                 console.log(imgURL);
                 var downloadBTN = $("<a>");
-                downloadBTN.addClass("downloadBtn fas fa-film");
+                downloadBTN.addClass("downloadBtn far fa-arrow-alt-circle-down");
                 downloadBTN.attr("data-href", results[i].images.fixed_height.url);
                 downloadBTN.attr("onclick", "forceDownload(this)");
                 downloadBTN.attr("download", ("image"+i));
+
+                //pause button
+                // downloadBTN.addClass("downloadBtn far fa-pause-circle"); 
+
+
+                //favorite button
+                // downloadBTN.addClass("downloadBtn far fa-star");
 
                 // personImage.append(downloadBTN);
                 var imgDiv = $("<div>");

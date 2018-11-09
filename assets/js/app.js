@@ -34,7 +34,7 @@ $("#gifSearchBtn").on("click", function (event) {
             var historyButton = $('<button>');
             historyButton.addClass('historyButton');
             // prepend the movie searched into the button
-            historyButton.prepend(movieSearch);
+            historyButton.prepend(movie);
             // prepend the button with the link of the searched movie into the footer
             $('#searchHistory').prepend(historyButton)
             // resets the value of the form
@@ -80,7 +80,7 @@ $(document.body).on("click", ".historyButton", function () {
     console.log(movieHistory);
     // adding the searched term into the API URL
     var qURL = "https://api.giphy.com/v1/gifs/search?q=" +
-        movieHistory + "&api_key=dc6zaTOxFJmzC&limit=1";
+        movieHistory + "&api_key=dc6zaTOxFJmzC&limit=10";
 
     $.ajax({
             url: qURL,

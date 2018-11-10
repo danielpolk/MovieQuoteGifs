@@ -50,7 +50,7 @@ $("#gifSearchBtn").on("click", function (event) {
                 moreGifDiv.addClass('moreGifs')
                 var moreGifs = $('<button>');
                 moreGifs.addClass('historyButton btn btn-dark');
-                moreGifs.text("See More");
+                moreGifs.text("Show More");
                 moreGifDiv.append(moreGifs);
                 $("#gifs-appear-here").after(moreGifDiv);
                 

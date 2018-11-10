@@ -34,26 +34,6 @@ $("#gifSearchBtn").on("click", function (event) {
         })
         .then(function (response) {
 
-//             // fav function script starts=============\\
-//             function favButton(){
-//                 var favImgDiv = $("<div>");
-//                 favImgDiv.addClass("favDiv");
-//                 var favImgBtn1 = $("<a>");
-//                 favImgBtn1.addClass("downloadBtn far fa-arrow-alt-circle-down");
-//                 var favImg = $("<img>");
-//                 // favImg.addClass("favImage")
-//                 // favImg.attr("src", this.imgURL);
-
-//                 console.log(response.data);
-//                 $("#favSection").append(personImage).append(favImgBtn1).append(favImg);
-
-
-
-//             }
-//             favButton();
-
-// // fav function script ends=============\\
-
             // create new button
             var historyButton = $('<button>');
             historyButton.addClass('historyButton');
@@ -89,6 +69,8 @@ $("#gifSearchBtn").on("click", function (event) {
                 downloadBTN.attr("onclick", "forceDownload(this)");
                 downloadBTN.attr("download", (results[i].title + "" + i));
 
+
+
                 // Pausing and playing the gifs ----------------------- //
 
                 $(document.body).on("click", ".gifImage", function(){
@@ -113,16 +95,18 @@ $("#gifSearchBtn").on("click", function (event) {
                 // downloadBTN.addClass("downloadBtn far fa-star");
                 var favBTN = $("<a>");
                 favBTN.addClass("favBtn far fa-star");
-                favBTN.attr("onclick", "favButton()");
-                favBTN.attr("data-href", results[i].images.fixed_height.url)
+                favBTN.attr("onclick", "favbtnfunc(this)");
+                favBTN.attr("data-href2", results[i].images.fixed_height.url)
                 // favButton();
                 // imgDiv.append(favBTN);
+                
+                
 
 
                 // personImage.append(downloadBTN);
                 var imgDiv = $("<div>");
                 imgDiv.addClass('imgDiv');
-                imgDiv.append(downloadBTN).append(personImage);
+                imgDiv.append(downloadBTN).append(favBTN).append(personImage);
                 $("#gifs-appear-here").prepend(imgDiv);
             }
             
@@ -188,9 +172,19 @@ $(document.body).on("click", ".historyButton", function () {
                 downloadBtnH.attr("onclick", "forceDownload(this)");
                 downloadBtnH.attr("download", ("image" + j));
 
+
+                //favorite button
+                // downloadBTN.addClass("downloadBtn far fa-star");
+                var favBTNH = $("<a>");
+                favBTNH.addClass("favBtn far fa-star");
+                favBTNH.attr("onclick", "favbtnfunc(this)");
+                favBTNH.attr("data-href2", results1[j].images.fixed_height.url)
+                // favButton();
+                // imgDiv.append(favBTN);
+
                 // personImage.append(downloadBTN);
                 var imgDivH = $("<div>");
-                imgDivH.append(downloadBtnH).append(personHistoryImage);
+                imgDivH.append(downloadBtnH).append(favBTNH).append(personHistoryImage);
                 $("#history-appear-here").prepend(imgDivH);
 
             }
@@ -202,7 +196,7 @@ $(document.body).on("click", ".historyButton", function () {
             // moreGifs.text("See More");
             // moreGifDiv.append(moreGifs);
 
-            $("#history-appear-here").after(moreGifDiv);
+            // $("#history-appear-here").after(moreGifDiv);
         })
 });
 
@@ -235,14 +229,26 @@ $.ajax({
             imgURL = results[i].images.fixed_height.url;
             console.log(imgURL);
             var downloadBTN = $("<a>");
-            downloadBTN.addClass("downloadBtn fas fa-film");
+            downloadBTN.addClass("downloadBtn far fa-arrow-alt-circle-down");
             downloadBTN.attr("data-href", results[i].images.fixed_height.url);
             downloadBTN.attr("onclick", "forceDownload(this)");
             downloadBTN.attr("download", ("image" + i));
 
+            //favorite button
+            // downloadBTN.addClass("downloadBtn far fa-star");
+            var favBTN = $("<a>");
+            favBTN.addClass("favBtn far fa-star");
+            favBTN.attr("onclick", "favbtnfunc(this)");
+            favBTN.attr("data-href2", results[i].images.fixed_height.url)
+                // favButton();
+                // imgDiv.append(favBTN);
+            
+
+            
+
             // personImage.append(downloadBTN);
             var imgDiv = $("<div>");
-            imgDiv.append(downloadBTN).append(personImage);
+            imgDiv.append(downloadBTN).append(favBTN).append(personImage);
             $("#gifs-appear-here").prepend(imgDiv);
         }
 
@@ -332,4 +338,36 @@ function forceDownload(link) {
         // link.innerText="Download Image";
     }
     xhr.send();
+}
+
+//favbutton function
+function favbtnfunc(link2){
+    var url2 = link2.getAttribute("data-href2");
+
+    var downloadBTN = $("<a>");
+    downloadBTN.addClass("favDownloadBtn far fa-arrow-alt-circle-down");
+    downloadBTN.attr("data-href", url2);
+    downloadBTN.attr("onclick", "forceDownload(this)");
+    downloadBTN.attr("download", ("Your Fav Image"));
+   
+    console.log(url2);
+    var favImageDiv = $("<div>");
+    favImageDiv.addClass("favDiv")
+    var favimg = $("<img>");
+    favimg.attr("src", url2);
+    favimg.addClass("favImage")
+    var deletebtn = $("<a>");
+    deletebtn.addClass("deletebtn far fa-times-circle");
+    favImageDiv.append(downloadBTN).append(deletebtn).append(favimg)      
+                // deletebtn.attr("onclick", "deletebtn()");
+                // deletebtn.attr("download", ("image"+i));
+    $("#favSection").append(favImageDiv);
+
+    
+    // console.log(imageUrl2);
+    $('.deletebtn').on('click',function () {
+        $(this).parent().remove();  
+        // console.log(test)
+    });
+
 }

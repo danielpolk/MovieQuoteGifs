@@ -49,7 +49,7 @@ $("#gifSearchBtn").on("click", function (event) {
                 var moreGifDiv = $('<div>');
                 moreGifDiv.addClass('moreGifs')
                 var moreGifs = $('<button>');
-                moreGifs.addClass('historyButton btn btn-dark');
+                moreGifs.addClass('moreBtn btn btn-dark');
                 moreGifs.text("Show More");
                 moreGifDiv.append(moreGifs);
                 $("#gifs-appear-here").after(moreGifDiv);
@@ -140,7 +140,8 @@ $(document.body).on("click", ".historyButton", function () {
     $('.moreGifs').empty();
     $("#gifs-appear-here").empty();
     $("#history-appear-here").empty();
-    var movieHistory = $(this).text()
+    var movieHistory = $(this).text();
+    console.log("history button clicked")
     // adding the searched term into the API URL
     var qURL = "https://api.giphy.com/v1/gifs/search?q=" +
         movieHistory + "&api_key=dc6zaTOxFJmzC&limit=10";
@@ -187,7 +188,8 @@ $(document.body).on("click", ".historyButton", function () {
 
 $(document.body).on("click", ".moreBtn", function(){
     $('.moreGifs').empty();
-    var movieSearch = $('.historyButton:first-child').text()
+    var movieSearch = $('.historyButton:first-child').text();
+    console.log(movieSearch);
     
 
     var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +

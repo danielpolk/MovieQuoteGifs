@@ -92,10 +92,15 @@ footer {
     text-align: center;
 }
 
-.moreGifs > button {
-    border-radius: 1px;
+.moreBtn{
     text-align: center;
-    background: rgb(255, 255, 255);
+    
+}
+
+.moreGifs > button {
+    /* border-radius: 1px; */
+    text-align: center;
+    /* background: rgb(255, 255, 255); */
 }
 
 #history-appear-here > div {
@@ -244,6 +249,7 @@ footer {
     position: absolute;
     margin: 14px 12px;
     font-size: 21px;
+    text-shadow: 0 0 5px #000;
     /*box-shadow: 0 1px 2px rgba(0,0,0,0.15);*/
    -webkit-transition: 0.5s all ease;
     -moz-transition: 0.5s all ease;
@@ -270,8 +276,9 @@ footer {
 .favDownloadBtn {
     color: white !important;
     position: absolute;
-    margin: 8px 20px;
+    margin: 8px 39px;
     font-size: 21px;
+    text-shadow: 0 0 5px #000;
     /*box-shadow: 0 1px 2px rgba(0,0,0,0.15);*/
    -webkit-transition: 0.5s all ease;
     -moz-transition: 0.5s all ease;
@@ -295,14 +302,16 @@ footer {
 }
 
 .favDiv{
-    width: 78%;
-    border: 1px solid white;
+    width: 100%;
+    /* border: 1px solid white; */
     /* position: absolute; */
-    margin: 20px auto;
+    margin: 12px auto;
 }
 
 .favImage{
-    width: 78%;
+    width: 84%;
+    border: 2px solid white;
+    border-radius: 10px;
 }
 
 .favBtn{
@@ -310,6 +319,7 @@ footer {
     position: absolute;
     font-size: 21px;
     margin: 14px 46px;
+    text-shadow: 0 0 5px #000;
     /*box-shadow: 0 1px 2px rgba(0,0,0,0.15);*/
    -webkit-transition: 0.5s all ease;
     -moz-transition: 0.5s all ease;
@@ -320,27 +330,25 @@ footer {
 .favBtn:hover{
     color: #4d071b;
     cursor: pointer;
-    text-shadow: 0 0 5px #666,                
-                 0 0 5px #666,                
-                 0 0 5px #666,                
-                 0 0 5px #666,                
-                 0 0 5px #666,                
-                 0 0 2px #000,                
-                 0 0 2px #000,                
-                 0 0 2px #000,               
-                 0 0 2px #000,                
+    text-shadow: 0 0 5px #666,
+                 0 0 5px #666,
+                 0 0 5px #666,
+                 0 0 5px #666,
+                 0 0 5px #666,
+                 0 0 2px #000,
+                 0 0 2px #000,
+                 0 0 2px #000,
+                 0 0 2px #000,
                  0 0 2px #000;
 }
 
-.favDiv i{
-    color: red !important;
-    margin: 8px;
-}
+
 
 .deletebtn{
     color: white !important;
+    text-shadow: 0 0 5px #000;
     position: absolute;
-    margin: 8px -11px;
+    margin: 8px 7px;
     font-size: 21px;
 }
 

@@ -329,7 +329,7 @@ function favbtnfunc(link2){
     favMenu.addClass('favBtnGlow');
     setTimeout(function () {
         favMenu.removeClass('favBtnGlow');
-    }, 5*1000);
+    }, 3*1000);
 
 }
 

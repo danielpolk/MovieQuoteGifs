@@ -367,3 +367,15 @@ footer {
                  0 0 2px #000;
 }
 
+/* Glowing animation */
+@keyframes glowing {
+    0% { box-shadow: 0 0 -10px #fff; }
+    40% { box-shadow: 0 0 40px #fff; }
+    60% { box-shadow: 0 0 40px #fff; }
+    100% { box-shadow: 0 0 -10px #fff; }
+  }
+
+.favBtnGlow{
+    animation: glowing 3000ms infinite;
+}
+

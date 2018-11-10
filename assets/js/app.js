@@ -325,6 +325,12 @@ function favbtnfunc(link2){
         $(this).parent().remove();  
     });
 
+    var favMenu = $('#menu-toggle');
+    favMenu.addClass('favBtnGlow');
+    setTimeout(function () {
+        favMenu.removeClass('favBtnGlow');
+    }, 5*1000);
+
 }
 
 //favbutton function script ends=============\\

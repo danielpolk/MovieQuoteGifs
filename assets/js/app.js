@@ -102,15 +102,16 @@ $("#gifSearchBtn").on("click", function (event) {
                 //append buttons and image to imgDiv
                 var imgDiv = $("<div>");
                 imgDiv.addClass('imgDiv');
+                
+                var button1 = $('.favBtn');
+                var button2 = $('.downloadBtn')
+                button1.hide();
+                button2.hide();
+                setTimeout(function () {
+                    button1.show();
+                    button2.show();
+                }, 3 * 1000);
                 imgDiv.append(downloadBTN).append(favBTN).append(personImage);
-                // var button1 = $('.favBtn');
-                // var button2 = $('.downloadBtn')
-                // button1.hide();
-                // button2.hide();
-                // setTimeout(function () {
-                //     button1.show();
-                //     button2.show();
-                // }, 3 * 1000);
                 $("#gifs-appear-here").prepend(imgDiv);
             }
         });

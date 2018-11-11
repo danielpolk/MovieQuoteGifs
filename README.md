@@ -10,47 +10,33 @@
 
 <a name="overview"></a>
 ## Overview 
-Imagine getting a text from a friend and you think of the perfect TV or movie quote to respond with in a GIF, but you have to sort through so many to find the right one. We wanted to create a simple generator to help users quickly find the exact GIF they are thinking of.
-MovieQuoteGif is an API Javascript Jquery application that allow the user to search for their favorite Gif's also it allow the users to search for a specific Gif if they add a quote in the quote section.
-not only that but also the user is able to Download, Pick favorite and remove Gif's
+Imagine getting a text from a friend and you think of the perfect movie quote to respond with in a GIF, but you have to sort through so many to find the right one. We wanted to create a simple generator to help users quickly find the exact GIF they are thinking of.
+MovieQuoteGif is an API Javascript Jquery application that allow the user to search for their favorite GIFs while also allowing the users to search for a specific GIF by simply adding a quote (or keyword) in the quote section. The user is also able to favorite and download GIFs straight to their device with just one click.
 
 <a name="pseudocode"></a>
 ## Pseudo Code 
 
 ![MovieQuoteGif](/assets/images/moviequotegifs.png)
 
-1. [Watch the demo](https://youtu.be/BqreERTLjgQ).
+1. [Watch the demo this project was based on](https://youtu.be/BqreERTLjgQ).
 
 <!-- Add pseudocode below you can use the trello cards to add the points we discussed -->
 
-2. The player will have to guess the answer, just like in Word Guess. This time, though, the player will guess with numbers instead of letters. 
+2. Here's how the app works:
 
-3. Here's how the app works:
+   * The user must click the search bar and type in a movie name. Clicking the SEARCH button or hitting ENTER on the keyboard will return 10 GIFs that are linked to that movie.
 
-   * There will be four crystals displayed as buttons on the page.
+   * If the user inputs a quote or keyword, the search is designed to return just one GIF. The hope is that the generator is able to      quickly find the exact GIF the user was hoping to find.
 
-   * The player will be shown a random number at the start of the game.
+   * If it isn't the right GIF, the user can click the SHOW MORE button to have more GIFs populated to the page. 
 
-   * When the player clicks on a crystal, it will add a specific amount of points to the player's total score. 
+3. Special Features:
 
-     * Your game will hide this amount until the player clicks a crystal.
-     * When they do click one, update the player's score counter.
+   * The user has the ability to favorite GIFs they like by clicking the STAR icon in the top left corner of GIFs. This will send GIFs to the FAVORITES SIDEBAR. This bar will briefly illuminate each time a new GIF is added. When the bar is clicked it will extend out to show the collection of favorited GIFs. If one is no longer needed, there is a simple remove button the user can click.
 
-   * The player wins if their total score matches the random number from the beginning of the game.
+   * There is a SEARCH HISTORY at the footer of the page that has dynamic buttons added to it each time a user searches for a movie. When the user clicks search there is a new button with the title of that movie that gets added to the search history bar. This allows the user to refer back to previous searches by simply clicking the button with that movie's title on it.
 
-   * The player loses if their score goes above the random number.
-
-   * The game restarts whenever the player wins or loses.
-
-     * When the game begins again, the player should see a new random number. Also, all the crystals will have four new hidden values. Of course, the user's score (and score counter) will reset to zero.
-
-   * The app should show the number of games the player wins and loses. To that end, do not refresh the page as a means to restart the game.
-
-##### Game design notes
-
-* The random number shown at the start of the game should be between 19 - 120.
-
-* Each crystal should have a random hidden value between 1 - 12.
+   * Sometimes saving GIFs can be a hassle and it can be hard to know if it was done rightly, so we wanted to make it easy for the user to download. In the top corner of each GIF there is a download icon. Clicking this icon will immediately download the GIF to the user's device. We have ensured that the user will get the highest resolution version of this motion GIF. 
 
 
 <a name="technologies"></a>

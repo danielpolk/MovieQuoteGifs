@@ -55,7 +55,7 @@ $("#gifSearchBtn").on("click", function (event) {
             moreGifs.addClass('moreBtn btn btn-dark');
             moreGifs.text("Show More");
             moreGifDiv.append(moreGifs);
-            
+
 
             // } else{
             // console.log("working")
@@ -101,7 +101,7 @@ $("#gifSearchBtn").on("click", function (event) {
             // if ($('#gifs-appear-here').children().length > 1){
             //     moreGifDiv.hide()
             // } else {
-                $("#gifs-appear-here").after(moreGifDiv);
+            $("#gifs-appear-here").after(moreGifDiv);
             // }
 
 
@@ -180,148 +180,152 @@ $(document.body).on("click", ".historyButton", function () {
 
 
 $(document.body).on("click", ".moreBtn", function () {
-    $('.moreGifs').empty();
-    $("#gifs-appear-here").empty();
-    // $("#history-appear-here").empty();
-    var movieSearch = $('.historyButton:first-child').text();
-    console.log(movieSearch);
-    if($('#gifs-appear-here').children().length = 1){
-        moreLimit=10;
-    }
-    
-    if($('#gifs-appear-here').children().length == moreLimit){
-        $('#gifs-appear-here').empty();
-        moreLimit+=10;
-    }
+            $('.moreGifs').empty();
+            $("#gifs-appear-here").empty();
+            // $("#history-appear-here").empty();
+            var movieSearch = $('.historyButton:first-child').text();
+            console.log(movieSearch);
+            if ($('#gifs-appear-here').children().length = 1) {
+                moreLimit = 10;
+            }
+
+            if ($('#gifs-appear-here').children().length == moreLimit) {
+                $('#gifs-appear-here').empty();
+                moreLimit += 10;
+            }
 
 
-    var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
-    movieSearch + "&api_key=dc6zaTOxFJmzC&limit=20";
-//if search is empty and submitted it will not add a button to the search history footer
-if (movieSearch == "") {
-    return false;
-}
-$.ajax({
-        url: queryURL,
-        method: "GET"
-    })
-    .then(function (response) {
-        var results = response.data;
+            var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
+                movieSearch + "&api_key=dc6zaTOxFJmzC&limit=20";
+            //if search is empty and submitted it will not add a button to the search history footer
+            if (movieSearch == "") {
+                return false;
+            }
+            $.ajax({
+                    url: queryURL,
+                    method: "GET"
+                })
+                .then(function (response) {
+                        var results = response.data;
 
-        for (var i = 0; i < results.length; i++) {
-            var personImage = $("<img>");
-            personImage.addClass("gifImage")
-            personImage.attr("src", results[i].images.fixed_height.url);
-            imgURL = results[i].images.fixed_height.url;
+                        for (var i = 0; i < results.length; i++) {
+                            var personImage = $("<img>");
+                            personImage.addClass("gifImage")
+                            personImage.attr("src", results[i].images.fixed_height.url);
+                            imgURL = results[i].images.fixed_height.url;
+                            var downloadBTN = $("<a>");
+                            downloadBTN.addClass("downloadBtn far fa-arrow-alt-circle-down");
+                            downloadBTN.attr("data-href", results[i].images.fixed_height.url);
+                            downloadBTN.attr("onclick", "forceDownload(this)");
+                            downloadBTN.attr("download", ("image" + i));
+
+                            //favorite button
+                            var favBTN = $("<a>");
+                            favBTN.addClass("favBtn far fa-star");
+                            favBTN.attr("onclick", "favbtnfunc(this)");
+                            favBTN.attr("data-href2", results[i].images.fixed_height.url)
+                            //append buttons and image to imgDiv
+                            var imgDiv = $("<div>");
+                            imgDiv.append(downloadBTN).append(favBTN).append(personImage);
+                            $("#gifs-appear-here").prepend(imgDiv);
+                    }
+
+                })
+
+
+
+                
+                
+            })
+
+
+
+        // Make favorite star yellow code below
+        // Not implementing because it doesn't disappear if someone deletes a favorite
+
+        // $(document.body).on("click", ".favBtn", function () {
+        //     $(this).addClass('favoriteClicked');
+        // });
+
+
+
+        // Side menu script starts=============\\
+
+        var sideMenu; $("#menu-close").click(function (e) {
+            e.preventDefault();
+            sideMenu = false;
+            $("#sidebar-wrapper").toggleClass("active");
+            changeBodyMargin();
+        }); $("#menu-toggle").click(function (e) {
+            e.preventDefault();
+            sideMenu = true;
+            $("#sidebar-wrapper").toggleClass("active");
+            changeBodyMargin();
+        });
+
+        function changeBodyMargin() {
+            if (sideMenu == true) {
+                $("#gif-container").addClass("shiftContentIn");
+                $("#gif-container").removeClass("shiftContentOut");
+            } else {
+                $("#gif-container").addClass("shiftContentOut");
+                $("#gif-container").removeClass("shiftContentIn");
+            }
+
+        }
+        changeBodyMargin();
+        // Side menu script ends=============\\
+
+
+        // Download function script starts=============\\
+        function forceDownload(link) {
+            var url = link.getAttribute("data-href");
+            var fileName = link.getAttribute("download");
+            var xhr = new XMLHttpRequest();
+            xhr.open("GET", url, true);
+            xhr.responseType = "blob";
+            xhr.onload = function () {
+                var urlCreator = window.URL || window.webkitURL;
+                var imageUrl = urlCreator.createObjectURL(this.response);
+                var tag = document.createElement('a');
+                tag.href = imageUrl;
+                tag.download = fileName;
+                document.body.appendChild(tag);
+                tag.click();
+                document.body.removeChild(tag);
+            }
+            xhr.send();
+        }
+        // Download function script ends=============\\
+
+        //favbutton function script starts=============\\
+        function favbtnfunc(link2) {
+            var url2 = link2.getAttribute("data-href2");
             var downloadBTN = $("<a>");
-            downloadBTN.addClass("downloadBtn far fa-arrow-alt-circle-down");
-            downloadBTN.attr("data-href", results[i].images.fixed_height.url);
+            downloadBTN.addClass("favDownloadBtn far fa-arrow-alt-circle-down");
+            downloadBTN.attr("data-href", url2);
             downloadBTN.attr("onclick", "forceDownload(this)");
-            downloadBTN.attr("download", ("image" + i));
+            downloadBTN.attr("download", ("Your Fav Image"));
+            var favImageDiv = $("<div>");
+            favImageDiv.addClass("favDiv")
+            var favimg = $("<img>");
+            favimg.attr("src", url2);
+            favimg.addClass("favImage")
+            var deletebtn = $("<a>");
+            deletebtn.addClass("deletebtn far fa-times-circle");
+            favImageDiv.append(downloadBTN).append(deletebtn).append(favimg)
+            $("#favSection").append(favImageDiv);
 
-            //favorite button
-            var favBTN = $("<a>");
-            favBTN.addClass("favBtn far fa-star");
-            favBTN.attr("onclick", "favbtnfunc(this)");
-            favBTN.attr("data-href2", results[i].images.fixed_height.url)
-            //append buttons and image to imgDiv
-            var imgDiv = $("<div>");
-            imgDiv.append(downloadBTN).append(favBTN).append(personImage);
-            $("#gifs-appear-here").append(imgDiv);
+            $('.deletebtn').on('click', function () {
+                $(this).parent().remove();
+            });
+
+            var favMenu = $('#menu-toggle');
+            favMenu.addClass('favBtnGlow');
+            setTimeout(function () {
+                favMenu.removeClass('favBtnGlow');
+            }, 3 * 1000);
+
         }
 
-
-
-})
-
-// Make favorite star yellow code below
-// Not implementing because it doesn't disappear if someone deletes a favorite
-
-// $(document.body).on("click", ".favBtn", function () {
-//     $(this).addClass('favoriteClicked');
-// });
-
-
-
-// Side menu script starts=============\\
-
-var sideMenu;
-$("#menu-close").click(function (e) {
-    e.preventDefault();
-    sideMenu = false;
-    $("#sidebar-wrapper").toggleClass("active");
-    changeBodyMargin();
-});
-$("#menu-toggle").click(function (e) {
-    e.preventDefault();
-    sideMenu = true;
-    $("#sidebar-wrapper").toggleClass("active");
-    changeBodyMargin();
-});
-
-function changeBodyMargin() {
-    if (sideMenu == true) {
-        $("#gif-container").addClass("shiftContentIn");
-        $("#gif-container").removeClass("shiftContentOut");
-    } else {
-        $("#gif-container").addClass("shiftContentOut");
-        $("#gif-container").removeClass("shiftContentIn");
-    }
-
-}
-changeBodyMargin();
-// Side menu script ends=============\\
-
-
-// Download function script starts=============\\
-function forceDownload(link) {
-    var url = link.getAttribute("data-href");
-    var fileName = link.getAttribute("download");
-    var xhr = new XMLHttpRequest();
-    xhr.open("GET", url, true);
-    xhr.responseType = "blob";
-    xhr.onload = function () {
-        var urlCreator = window.URL || window.webkitURL;
-        var imageUrl = urlCreator.createObjectURL(this.response);
-        var tag = document.createElement('a');
-        tag.href = imageUrl;
-        tag.download = fileName;
-        document.body.appendChild(tag);
-        tag.click();
-        document.body.removeChild(tag);
-    }
-    xhr.send();
-}
-// Download function script ends=============\\
-
-//favbutton function script starts=============\\
-function favbtnfunc(link2) {
-    var url2 = link2.getAttribute("data-href2");
-    var downloadBTN = $("<a>");
-    downloadBTN.addClass("favDownloadBtn far fa-arrow-alt-circle-down");
-    downloadBTN.attr("data-href", url2);
-    downloadBTN.attr("onclick", "forceDownload(this)");
-    downloadBTN.attr("download", ("Your Fav Image"));
-    var favImageDiv = $("<div>");
-    favImageDiv.addClass("favDiv")
-    var favimg = $("<img>");
-    favimg.attr("src", url2);
-    favimg.addClass("favImage")
-    var deletebtn = $("<a>");
-    deletebtn.addClass("deletebtn far fa-times-circle");
-    favImageDiv.append(downloadBTN).append(deletebtn).append(favimg)
-    $("#favSection").append(favImageDiv);
-
-    $('.deletebtn').on('click', function () {
-        $(this).parent().remove();
-    });
-
-    var favMenu = $('#menu-toggle');
-    favMenu.addClass('favBtnGlow');
-    setTimeout(function () {
-        favMenu.removeClass('favBtnGlow');
-    }, 3 * 1000);
-
-}
-
-//favbutton function script ends=============\\
+        //favbutton function script ends=============\\

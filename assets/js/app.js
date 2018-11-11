@@ -181,6 +181,8 @@ $(document.body).on("click", ".historyButton", function () {
 
 $(document.body).on("click", ".moreBtn", function () {
     $('.moreGifs').empty();
+    $("#gifs-appear-here").empty();
+    // $("#history-appear-here").empty();
     var movieSearch = $('.historyButton:first-child').text();
     console.log(movieSearch);
     if($('#gifs-appear-here').children().length = 1){
@@ -194,46 +196,39 @@ $(document.body).on("click", ".moreBtn", function () {
 
 
     var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
-        movieSearch + "&api_key=dc6zaTOxFJmzC&limit=" + moreLimit;
-    //if search is empty and submitted it will not add a button to the search history footer
-    if (movieSearch == "") {
-        return false;
-    }
-    $.ajax({
-            url: queryURL,
-            method: "GET"
-        })
-        .then(function (response) {
-            var results = response.data;
+    movieSearch + "&api_key=dc6zaTOxFJmzC&limit=20";
+//if search is empty and submitted it will not add a button to the search history footer
+if (movieSearch == "") {
+    return false;
+}
+$.ajax({
+        url: queryURL,
+        method: "GET"
+    })
+    .then(function (response) {
+        var results = response.data;
 
-            for (var i = 0; i < results.length; i++) {
-                var personImage = $("<img>");
-                personImage.addClass("gifImage")
-                personImage.attr("src", results[i].images.fixed_height.url);
-                imgURL = results[i].images.fixed_height.url;
-                var downloadBTN = $("<a>");
-                downloadBTN.addClass("downloadBtn far fa-arrow-alt-circle-down");
-                downloadBTN.attr("data-href", results[i].images.fixed_height.url);
-                downloadBTN.attr("onclick", "forceDownload(this)");
-                downloadBTN.attr("download", ("image" + i));
+        for (var i = 0; i < results.length; i++) {
+            var personImage = $("<img>");
+            personImage.addClass("gifImage")
+            personImage.attr("src", results[i].images.fixed_height.url);
+            imgURL = results[i].images.fixed_height.url;
+            var downloadBTN = $("<a>");
+            downloadBTN.addClass("downloadBtn far fa-arrow-alt-circle-down");
+            downloadBTN.attr("data-href", results[i].images.fixed_height.url);
+            downloadBTN.attr("onclick", "forceDownload(this)");
+            downloadBTN.attr("download", ("image" + i));
 
-                //favorite button
-                var favBTN = $("<a>");
-                favBTN.addClass("favBtn far fa-star");
-                favBTN.attr("onclick", "favbtnfunc(this)");
-                favBTN.attr("data-href2", results[i].images.fixed_height.url)
-                //append buttons and image to imgDiv
-                var imgDiv = $("<div>");
-                imgDiv.append(downloadBTN).append(favBTN).append(personImage);
-                $("#gifs-appear-here").prepend(imgDiv);
-            }
-            
-
-
-
-
-
-        });
+            //favorite button
+            var favBTN = $("<a>");
+            favBTN.addClass("favBtn far fa-star");
+            favBTN.attr("onclick", "favbtnfunc(this)");
+            favBTN.attr("data-href2", results[i].images.fixed_height.url)
+            //append buttons and image to imgDiv
+            var imgDiv = $("<div>");
+            imgDiv.append(downloadBTN).append(favBTN).append(personImage);
+            $("#gifs-appear-here").append(imgDiv);
+        }
 
 
 

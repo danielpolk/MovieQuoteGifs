@@ -188,12 +188,14 @@ $(document.body).on("click", ".historyButton", function () {
 
 $(document.body).on("click", ".moreBtn", function(){
     $('.moreGifs').empty();
+    $("#gifs-appear-here").empty();
+    // $("#history-appear-here").empty();
     var movieSearch = $('.historyButton:first-child').text();
     console.log(movieSearch);
     
 
     var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
-    movieSearch + "&api_key=dc6zaTOxFJmzC&limit=10";
+    movieSearch + "&api_key=dc6zaTOxFJmzC&limit=20";
 //if search is empty and submitted it will not add a button to the search history footer
 if (movieSearch == "") {
     return false;
@@ -224,7 +226,7 @@ $.ajax({
             //append buttons and image to imgDiv
             var imgDiv = $("<div>");
             imgDiv.append(downloadBTN).append(favBTN).append(personImage);
-            $("#gifs-appear-here").prepend(imgDiv);
+            $("#gifs-appear-here").append(imgDiv);
         }
 
 

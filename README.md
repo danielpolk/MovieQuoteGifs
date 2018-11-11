@@ -79,8 +79,4 @@ Open index.html file in browser (Chrome Preferred)
 
 Or visit <!-- ADD LIVE LINK HERE https://markpython86.github.io/unit-4-game-crystals/ -->
 
-<a name="display"></a>
-## App Display
 
-<!-- ### Demo
-![Demo](/assets/images/demo.gif) -->

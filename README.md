@@ -77,6 +77,6 @@ The MovieQuoteGif project and its files should now be in your project folder.
 
 Open index.html file in browser (Chrome Preferred)
 
-Or visit <!-- ADD LIVE LINK HERE https://markpython86.github.io/unit-4-game-crystals/ -->
+Or visit https://danielpolk.github.io/MovieQuoteGifs/
 
 

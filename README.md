@@ -3,10 +3,10 @@
 ## Table of Contents 
 1. [Overview](#overview)
 2. [Pseudo Code](#pseudocode)
-2. [Technologies](#technologies)
-3. [Methods](#methods)
-4. [Local Installation](#installation)
-5. [App Display](#display)
+3. [Technologies](#technologies)
+4. [Methods](#methods)
+5. [Local Installation](#installation)
+
 
 <a name="overview"></a>
 ## Overview 

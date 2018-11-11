@@ -66,9 +66,9 @@ $("#gifSearchBtn").on("click", function (event) {
             for (var i = 0; i < results.length; i++) {
                 var personImage = $("<img>");
                 var resultElem = results[i];
-                personImage.addClass("gifImage")
+                personImage.addClass("gifImage");
                 personImage.attr("src", results[i].images.fixed_height.url);
-                personImage.attr("data-fixed", results[i].images.fixed_height_still.url)
+                personImage.attr("data-fixed", results[i].images.fixed_height_still.url);
                 // personImage.attr("onclick", "forceDownload(this)");
                 // personImage.attr("download", ("image"+i));
                 var downloadBTN = $("<a>");
@@ -81,13 +81,13 @@ $("#gifSearchBtn").on("click", function (event) {
                 var favBTN = $("<a>");
                 favBTN.addClass("favBtn far fa-star");
                 favBTN.attr("onclick", "favbtnfunc(this)");
-                favBTN.attr("data-href2", results[i].images.fixed_height.url)
+                favBTN.attr("data-href2", results[i].images.fixed_height.url);
                 //append buttons and image to imgDiv
                 var imgDiv = $("<div>");
                 imgDiv.addClass('imgDiv');
 
                 var button1 = $('.favBtn');
-                var button2 = $('.downloadBtn')
+                var button2 = $('.downloadBtn');
                 button1.hide();
                 button2.hide();
                 setTimeout(function () {
@@ -160,6 +160,16 @@ $(document.body).on("click", ".historyButton", function () {
                 favBTNH.attr("data-href2", results1[j].images.fixed_height.url)
                 //append buttons and image to imgDiv
                 var imgDivH = $("<div>");
+                //buttons to delay until gifs are loaded
+                var button1 = $('.favBtn');
+                var button2 = $('.downloadBtn');
+                button1.hide();
+                button2.hide();
+                setTimeout(function () {
+                    button1.show();
+                    button2.show();
+                }, 3 * 1000);
+
                 imgDivH.append(downloadBtnH).append(favBTNH).append(personHistoryImage);
                 $("#history-appear-here").prepend(imgDivH);
 

@@ -13,10 +13,10 @@
 Imagine getting a text from a friend and you think of the perfect movie quote to respond with in a GIF, but you have to sort through so many to find the right one. We wanted to create a simple generator to help users quickly find the exact GIF they are thinking of.
 MovieQuoteGif is an API Javascript Jquery application that allow the user to search for their favorite GIFs while also allowing the users to search for a specific GIF by simply adding a quote (or keyword) in the quote section. The user is also able to favorite and download GIFs straight to their device with just one click.
 
+![](moviequote.gif)
+
 <a name="pseudocode"></a>
 ## Pseudo Code 
-
-![MovieQuoteGif](/assets/images/moviequotegifs.png)
 
 1. [Watch the demo this project was based on](https://youtu.be/BqreERTLjgQ).
 
